@@ -60,3 +60,6 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+# Django
+gcpug_shonan_vol3_example/db.sqlite3
