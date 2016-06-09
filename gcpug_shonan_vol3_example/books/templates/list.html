@@ -1,0 +1,40 @@
+{% extends 'common/base.html' %}
+
+{% block subtitle %}書籍一覧{% endblock %}
+
+{% block content %}
+   <h1>書籍一覧</h1>
+   <table>
+       <thead>
+           <tr>
+               <th>書籍名</th>
+               <th>著者名</th>
+               <th>出版日</th>
+           </tr>
+       </thead>
+    <tbody>
+   {% for book in object_list %}
+   <tr>
+       <td>{{ book.title }}</td>
+       <td>{{ book.author.name }}</td>
+       <td>{{ book.published_at|date:"Y年m月d日" }}</td>
+   </tr>
+   {% endfor %}
+    </tbody>
+   </table>
+       {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                <a href="{% url 'books:list' %}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                <a href="{% url 'books:list' %}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+{% endblock %}
