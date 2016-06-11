@@ -8,13 +8,15 @@ handlers:
   static_files: _build/html/index.html
   upload: _build/html/index.html
   secure: always
-  login: admin
+  # Google Appsドメイン認証を使わないなら「login: admin」にする。
+  login: required
 
 - url: /(.*)
   static_files: _build/html/\1
   upload: _build/html/.*
   secure: always
-  login: admin
+  # Google Appsドメイン認証を使わないなら「login: admin」にする。
+  login: required
 
 - url: /.*
   script: _go_app
