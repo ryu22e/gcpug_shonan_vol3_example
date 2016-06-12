@@ -26,7 +26,6 @@ build-docs:
     - script:
         name: ドキュメント生成
         code: |
-            cd gcpug_shonan_vol3_example/docs/
             make html
             cp -R _build/html $WERCKER_REPORT_ARTIFACTS_DIR
 deploy-docs:
