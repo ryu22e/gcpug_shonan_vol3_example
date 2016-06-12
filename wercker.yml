@@ -38,7 +38,10 @@ deploy-docs:
     - script:
         name: ドキュメントのデプロイ
         # TODO 後で書く。
-        code: echo deploy-docs
+        code: |
+            cd docs/
+            echo deploy-docs
+            cd ../
 deploy:
   steps:
     - script:
