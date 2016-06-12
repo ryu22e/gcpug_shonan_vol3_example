@@ -29,6 +29,7 @@ build-docs:
             cd docs/
             make html
             cp -R _build/html $WERCKER_REPORT_ARTIFACTS_DIR
+            cd ../
 deploy-docs:
   steps:
     - script:
