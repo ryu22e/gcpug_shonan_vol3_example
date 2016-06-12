@@ -1,0 +1,43 @@
+box: python:3.5
+build:
+  steps:
+    - script:
+        name: ビルド
+        # サンプル用のダミーコード。
+        code: echo build
+test:
+  steps:
+    - pip-install:
+        name: Pythonパッケージのインストール
+        requirements_file: "gcpug_shonan_vol3_example/requirements/test.txt"
+    - script:
+        name: テスト実行
+        code: |
+            cd gcpug_shonan_vol3_example/
+            python manage.py test -v3
+build-docs:
+  steps:
+    - install-packages:
+        name: 必要なパッケージのインストール
+        packages: python-imaging
+    - pip-install:
+        name: Pythonパッケージのインストール
+        requirements_file: "gcpug_shonan_vol3_example/requirements/docs.txt"
+    - script:
+        name: ドキュメント生成
+        code: |
+            cd gcpug_shonan_vol3_example/docs/
+            make html
+            cp -R _build/html $WERCKER_REPORT_ARTIFACTS_DIR
+deploy-docs:
+  steps:
+    - script:
+        name: ドキュメントのデプロイ
+        # TODO 後で書く。
+        code: echo deploy-docs
+deploy:
+  steps:
+    - script:
+        name: デプロイ
+        # サンプル用のダミーコード。
+        code: echo deploy
