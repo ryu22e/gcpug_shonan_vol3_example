@@ -8,7 +8,7 @@ build:
 test:
   steps:
     - pip-install:
-        name: テスト用Pythonパッケージのインストール
+        name: テスト環境用Pythonパッケージのインストール
         requirements_file: "gcpug_shonan_vol3_example/requirements/test.txt"
     - script:
         name: テスト実行
@@ -21,7 +21,7 @@ build-docs:
         name: ドキュメント生成に必要なパッケージのインストール
         packages: python-imaging
     - pip-install:
-        name: テスト用Pythonパッケージのインストール
+        name: テスト環境用Pythonパッケージのインストール
         requirements_file: "gcpug_shonan_vol3_example/requirements/test.txt"
     - pip-install:
         name: ドキュメント生成用Pythonパッケージのインストール
