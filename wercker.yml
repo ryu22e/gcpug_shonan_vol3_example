@@ -33,13 +33,25 @@ build-docs:
             make html
             cp -R _build/html $WERCKER_REPORT_ARTIFACTS_DIR
 deploy-docs:
+  box: python:2.7
   steps:
+    - install-packages:
+        name: GAE SDK/Goのインストールに必要なパッケージのインストール
+        packages: unzip
+    - script:
+        name: GAE SDK/Goのインストール
+        code: |
+            export GAE_GO_SDK_FILE_NAME=go_appengine_${GAE_GO_SDK_VERSION}.zip
+            curl -o ${WERCKER_ROOT}/${GAE_GO_SDK_FILE_NAME} https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_linux_amd64-${GAE_GO_SDK_VERSION}.zip
+            echo "$GAE_GO_SDK_SHA1_CHECKSUM  $GAE_GO_SDK_FILE_NAME" > ${WERCKER_ROOT}/${GAE_GO_SDK_FILE_NAME}.sha1
+            cd $WERCKER_ROOT
+            sha1sum --check ${GAE_GO_SDK_FILE_NAME}.sha1
+            unzip -q -d $WERCKER_ROOT ${WERCKER_ROOT}/${GAE_GO_SDK_FILE_NAME}
+            export PATH=$PATH:${WERCKER_ROOT}/go_appengine
     - script:
         name: ドキュメントのデプロイ
-        # TODO 後で書く。
         code: |
-            cd docs/
-            echo deploy-docs
+            appcfg.py update docs/ --oauth2_refresh_token=$OAUTH2_REFRESH_TOKEN
 deploy:
   steps:
     - script:
