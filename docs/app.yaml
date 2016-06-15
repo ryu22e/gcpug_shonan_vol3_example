@@ -18,12 +18,5 @@ handlers:
   # Google Appsドメイン認証を使わないなら「login: admin」にする。
   login: required
 
-- url: /favicon\.ico
-  static_files: _static/favicon.ico
-  upload: _static/favicon\.ico
-  secure: always
-  # Google Appsドメイン認証を使わないなら「login: admin」にする。
-  login: required
-
 - url: /.*
   script: _go_app
