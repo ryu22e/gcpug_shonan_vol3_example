@@ -30,3 +30,13 @@ Sphinxでドキュメントを生成する場合は `blockdiagの依存パッケ
 Sphinxでドキュメント生成する場合は以下も実行する::
 
     pip install -r requirements/docs.txt
+
+ドキュメントの更新方法
+----------------------
+
+新しいソースコードを追加したら、以下の手順で `rst` ファイルを生成する::
+
+    cd /path/to/gcpug_shonan_vol3_example/
+    sphinx-apidoc -o docs gcpug_shonan_vol4_example
+
+`dosc/index.rst` に生成された `rst` のリンクを追加すること。
