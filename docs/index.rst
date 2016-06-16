@@ -11,7 +11,7 @@ Contents:
 .. toctree::
    :maxdepth: 4
 
-   setup
+   dev_manual
    books
    gcpug_shonan_vol3_example
    manage
